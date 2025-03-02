@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -6,14 +6,27 @@ const Login = () => {
   const params = new URLSearchParams(location.search);
   const userType = params.get("type") || "client"; // Default to client
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // Authentication logic (can be API-based later)
+    if (email && password) {
+      localStorage.setItem("authToken", "mockToken"); // Simulated authentication
+      navigate(`/dashboard?type=${userType}`);
+    } else {
+      alert("Enter valid credentials");
+    }
+  };
 
   return (
     <div className="login-page">
       <div className="login-container">
         <h1>{userType === "vendor" ? "Vendor Login" : "Client Login"}</h1>
-        <form>
-          <input type="email" placeholder="Enter your email" required />
-          <input type="password" placeholder="Enter your password" required />
+        <form onSubmit={handleLogin}>
+          <input type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <input type="password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} required />
           <button type="submit">Login</button>
         </form>
         <p className="switch-text">
@@ -24,10 +37,7 @@ const Login = () => {
           )}
         </p>
         <p className="register-text">
-          New user?{" "}
-          <span onClick={() => navigate(`/register?type=${userType}`)}>
-            Register here
-          </span>
+          New user? <a href={`/register?type=${userType}`}>Register here</a>
         </p>
       </div>
     </div>
