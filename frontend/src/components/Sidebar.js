@@ -5,7 +5,7 @@ import { FaUser, FaCalendarAlt, FaStar, FaComments, FaClipboardList, FaHeart, Fa
 const Sidebar = () => {
   return (
     <div className="sidebar">
-      <h4>Hello User</h4>
+      <h3>EventCase</h3>
       <ul>
         <li>
           <Link to="/invite-vendors">

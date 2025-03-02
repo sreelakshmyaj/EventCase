@@ -5,13 +5,14 @@ import AboutUs from './pages/AboutUs';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Register from './pages/Regiser';
+import ClientDashboard from './pages/ClientDashboard';
 import Dashboard from './pages/Dashboard';
 
 function App() {
   return(
     <Router>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={<ClientDashboard />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<Contact />} />
         <Route path='/login' element={<Login />} />
