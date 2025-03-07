@@ -28,7 +28,7 @@ const ManageBookings = () => {
       </div>
 
       <div className="booking-actions">
-        <Link to="/create-booking" className="btn create-btn">Create New Booking</Link>
+        <Link to="/dashboard/create-booking" className="btn create-btn">Create New Booking</Link>
       </div>
 
       <table className="booking-table">

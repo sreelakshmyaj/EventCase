@@ -796,7 +796,125 @@ a:hover {
     width: 100%;
     
 }
-  
+
+/* Create Booking */
+.booking-form-container {
+    padding: 20px;
+    margin: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin-left: 270px; 
+}
+
+.booking-form-container h2 {
+    color: #b08968;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-weight: bold;
+    color: #432818;
+    text-align: left;
+    display: block;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+/* Budget Slider */
+input[type="range"] {
+    width: 100%;
+    accent-color: #b08968;
+}
+
+button {
+    background-color: #b08968;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #a07155;
+}
+
+/* Dropdown styling */
+select {
+    cursor: pointer;
+    background-color: #fff;
+}
+
+/* Submit Button */
+button[type="submit"] {
+    background-color: #4CAF50;
+    font-size: 1.2rem;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.recommendation-list {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    background: #f9f9f9;
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar in IE/Edge */
+}
+
+/* Hide scrollbar for Webkit browsers */
+.recommendation-list::-webkit-scrollbar {
+    display: none;
+}
+
+.recommendation-item {
+    flex: 0 0 auto;
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.recommendation-item:hover {
+    transform: scale(1.05);
+}
+
+.recommendation-item img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.recommendation-item p {
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
 
 @media screen and (max-width: 768px) {
     .hero .img_side {
