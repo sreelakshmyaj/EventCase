@@ -717,6 +717,86 @@ a:hover {
     border-bottom: 1px solid #b08968;
 }
 
+/*Manage bookings*/
+.manage-bookings {
+    padding: 2rem;
+    color: #432818;
+    margin-left: 250px; /* Push content to the right */
+    width: calc(100% - 250px); /* Prevent sidebar overlap */
+}
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .booking-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+  }
+  
+  .stat {
+    padding: 1rem;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .confirmed {
+    background-color: #4caf50;
+  }
+  
+  .pending {
+    background-color: #ff9800;
+  }
+  
+  .canceled {
+    background-color: #f44336;
+  }
+  
+  .booking-actions {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .create-btn {
+    padding: 0.8rem 1.5rem;
+    background-color: #b08968;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .booking-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+  }
+  
+  .booking-table th, .booking-table td {
+    border: 1px solid #ddd;
+    padding: 0.8rem;
+    text-align: center;
+  }
+  
+  .cancel-btn {
+    background-color: #d9534f;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+.calendar-container {
+    text-align: center;
+    width: 100%;
+    
+}
+  
 
 @media screen and (max-width: 768px) {
     .hero .img_side {

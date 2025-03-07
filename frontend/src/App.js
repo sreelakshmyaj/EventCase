@@ -6,7 +6,6 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Register from './pages/Regiser';
 import ClientDashboard from './pages/ClientDashboard';
-import Dashboard from './pages/Dashboard';
 
 function App() {
   return(
@@ -17,7 +16,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/dashboard/*' element={<ClientDashboard />} />
       </Routes>
     </Router>
   )
