@@ -8,23 +8,13 @@ const Sidebar = () => {
       <h3>EventCase</h3>
       <ul>
         <li>
-          <Link to="/dashboard/invite-vendors">
-            <FaUser /> Invite Vendors
-          </Link>
-        </li>
-        <li>
           <Link to="/dashboard/manage-bookings">
             <FaCalendarAlt /> Manage Bookings
           </Link>
         </li>
         <li>
-          <Link to="/dashboard/browse-vendors">
-            <FaClipboardList /> Browse Vendors
-          </Link>
-        </li>
-        <li>
-          <Link to="/dashboard/reviews">
-            <FaStar /> Rate & Review Vendors
+          <Link to="/dashboard/browse">
+            <FaClipboardList /> Browse Venues & Vendors
           </Link>
         </li>
         <li>
