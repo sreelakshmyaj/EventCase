@@ -4,14 +4,15 @@ import { useNavigate } from "react-router-dom";
 const CreateBooking = () => {
   const navigate = useNavigate();
   const [eventName, setEventName] = useState("");
+  const [eventType, setEventType] = useState("");
   const [eventDate, setEventDate] = useState("");
   const [budget, setBudget] = useState(5000);
+  const [guestCnt, setGuestCnt] = useState(0);
   const [venue, setVenue] = useState("");
   const [vendor, setVendor] = useState("");
   const [venueSuggestions, setVenueSuggestions] = useState([]);
   const [vendorSuggestions, setVendorSuggestions] = useState([]);
 
-  // Mock API response (Replace with actual API call)
   const fetchVenueRecommendations = () => {
     const venues = [
       { name: "Grand Palace", img: "/images/venue1.jpg" },
@@ -49,6 +50,16 @@ const CreateBooking = () => {
           required
         />
 
+        <label>Event Type:</label>
+        <select value={eventType} onChange={(e) => setEventType(e.target.value)}>
+          <option value="">Select Type</option>
+          <option value="Weddings">Weddings</option>
+          <option value="Conferences">Conferences</option>
+          <option value="Parties">Parties</option>
+          <option value="Coroporate">Corporate Events</option>
+          <option value="Festivals">Festivals</option>
+        </select>
+
         <label>Event Date:</label>
         <input
           type="date"
@@ -67,7 +78,14 @@ const CreateBooking = () => {
           onChange={(e) => setBudget(e.target.value)}
         />
 
-        {/* Venue Selection */}
+        <label>Expected Guest Count:</label>
+        <input 
+          type="number"
+          min="0"
+          value={guestCnt}
+          onChange={(e) => setGuestCnt(e.target.value)}
+        />
+
         <label>Venue:</label>
         <button type="button" onClick={fetchVenueRecommendations}>
           Get Venue Recommendations
@@ -90,7 +108,6 @@ const CreateBooking = () => {
           ))}
         </div>
 
-        {/* Vendor Selection */}
         <label>Vendor:</label>
         <button type="button" onClick={fetchVendorRecommendations}>
           Get Vendor Recommendations
