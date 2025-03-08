@@ -1,8 +1,11 @@
 import React from "react";
+import Header from "../components/Header";
 
 const AboutUs = () => {
   return (
-    <div className="about-us">
+    <div>
+      <Header />
+      <div className="about-us">
       <div className="about-container">
         <div className="about-text">
           <h1>Who We Are</h1>
@@ -34,6 +37,8 @@ const AboutUs = () => {
         </p>
       </div>
     </div>
+    </div>
+    
   );
 };
 

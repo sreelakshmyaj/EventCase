@@ -1,9 +1,12 @@
 import React from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
+import Header from "../components/Header";
 
 const Contact = () => {
   return (
-    <div className="contact-page">
+    <div>
+      <Header />
+      <div className="contact-page">
       <div className="contact-container">
         <h1 className="contact-title">Get in Touch</h1>
 
@@ -46,6 +49,7 @@ const Contact = () => {
           ></iframe>
         </div>
       </div>
+    </div>
     </div>
   );
 };
