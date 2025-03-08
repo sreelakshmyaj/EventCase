@@ -634,6 +634,9 @@ a:hover {
 .sidebar .logout {
     margin-top: auto;
     background: #b08968;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .sidebar .logout:hover {
@@ -1161,7 +1164,6 @@ hr {
     cursor: pointer;
     border-radius: 5px;
 }
-  
   
 
 @media screen and (max-width: 768px) {

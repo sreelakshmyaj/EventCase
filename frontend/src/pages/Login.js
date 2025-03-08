@@ -4,16 +4,15 @@ import { useLocation, useNavigate } from "react-router-dom";
 const Login = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
-  const userType = params.get("type") || "client"; // Default to client
+  const userType = params.get("type") || "client"; 
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Authentication logic (can be API-based later)
     if (email && password) {
-      localStorage.setItem("authToken", "mockToken"); // Simulated authentication
+      localStorage.setItem("authToken", "mockToken"); 
       navigate(`/dashboard?type=${userType}`);
     } else {
       alert("Enter valid credentials");

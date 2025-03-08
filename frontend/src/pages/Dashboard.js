@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaCalendarAlt, FaUserTie, FaClipboardList, FaCommentsDollar } from "react-icons/fa";
 import Chart from "../components/Chart";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      navigate("/login");
+    }
+  }, [navigate]);
   return (
     <div className="dashboard-content">
       <div className="stats-container">

@@ -1,8 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUser, FaCalendarAlt, FaStar, FaComments, FaClipboardList, FaHeart, FaSignOutAlt } from "react-icons/fa";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    navigate("/");
+  };
+
   return (
     <div className="sidebar">
       <h3>EventCase</h3>
@@ -32,11 +39,9 @@ const Sidebar = () => {
             <FaUser /> Profile & Settings
           </Link>
         </li>
-        <li className="logout">
-          <Link to="/logout">
+          <button onClick={handleLogout} className="logout">
             <FaSignOutAlt /> Logout
-          </Link>
-        </li>
+          </button>
       </ul>
     </div>
   );
