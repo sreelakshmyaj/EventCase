@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios"
+import { toast, ToastContainer } from "react-toastify"
 
 const Login = () => {
   const location = useLocation();
@@ -9,13 +11,26 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (email && password) {
-      localStorage.setItem("authToken", "mockToken"); 
-      navigate(`/dashboard?type=${userType}`);
-    } else {
-      alert("Enter valid credentials");
+    try {
+      const response = await axios.post("http://localhost:5000/api/auth/login", {
+        email,
+        password
+      });
+
+      const { token, role } = response.data;
+
+      if (token) {
+        localStorage.setItem("authToken", token);
+        localStorage.setItem("userRole", role);
+        toast.success("Login successful");
+        navigate(`/dashboard?type=${userType}`);
+      } else {
+        toast.error("Login failed. Please try again");
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Invalid credentials");
     }
   };
 
@@ -39,6 +54,7 @@ const Login = () => {
           New user? <a href={`/register?type=${userType}`}>Register here</a>
         </p>
       </div>
+      <ToastContainer />
     </div>
   );
 };
