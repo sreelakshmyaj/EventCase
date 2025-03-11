@@ -1,30 +1,76 @@
-import React, { useState} from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect} from "react";
+import { Link, useNavigate } from "react-router-dom";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import axios from "axios"
+import { toast, ToastContainer } from "react-toastify"
 
 const ManageBookings = () => {
-    const [bookings, setBookings] = useState([
-        { id: 1, title: "Wedding Reception", date: "2025-03-10", status: "Confirmed" },
-        { id: 2, title: "Corporate Event", date: "2025-03-15", status: "Pending" },
-        { id: 3, title: "Birthday Party", date: "2025-03-20", status: "Confirmed" },
-      ]);
+    const [events, setEvents] = useState([]);
+    const navigate = useNavigate();
 
-    const confirmedEvents = bookings
-    .filter((booking) => booking.status === "Confirmed")
-    .map((booking) => ({
-      title: booking.title,
-      date: booking.date,
+    useEffect(() => {
+      const fetchEvents = async () => {
+        try {
+          const token = localStorage.getItem("authToken");
+          if (!token) {
+            toast.error("Please log in to view your events");
+            return;
+          }
+
+          const response = await axios.get("http://localhost:5000/api/bookings/my-events", {
+            headers: {Authorization: `Bearer ${token}`},
+          });
+
+          setEvents(response.data);
+        } catch (error) {
+          toast.error("Failed to fetch events");
+        }
+      };
+
+      fetchEvents();
+    }, []);
+
+    const formatDate = (dateString) => {
+      const date = new Date(dateString);
+      return date.toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+      });
+    };
+
+    const confirmedEvents = events
+    .filter((event) => event.status === "confirmed")
+    .map((event) => ({
+      title: event.event_name,
+      date: event.event_date,
+      color: "green",
+      allDay: true,
     }));
+
+  const pendingEvents = events
+    .filter((event) => event.status === "pending")
+    .map((event) => ({
+      title: event.event_name,
+      date: event.event_date,
+      color: "orange",
+      allDay: true,
+    }));
+
+    console.log(pendingEvents);
 
   return (
     <div className="manage-bookings">
-      <h1>Manage Your Bookings</h1>
+      <h1>Manage Your Events</h1>
 
       <div className="booking-stats">
-        <div className="stat confirmed">Confirmed: {bookings.filter(b => b.status === "Confirmed").length}</div>
-        <div className="stat pending">Pending: {bookings.filter(b => b.status === "Pending").length}</div>
-        <div className="stat canceled">Canceled: {bookings.filter(b => b.status === "Canceled").length}</div>
+        <div className="stat confirmed">
+          Confirmed: {confirmedEvents.length}
+        </div>
+        <div className="stat pending">
+          Pending: {pendingEvents.length}
+        </div>
       </div>
 
       <div className="booking-actions">
@@ -41,13 +87,18 @@ const ManageBookings = () => {
           </tr>
         </thead>
         <tbody>
-          {bookings.map((booking) => (
-            <tr key={booking.id}>
-              <td>{booking.title}</td>
-              <td>{booking.date}</td>
-              <td className={booking.status.toLowerCase()}>{booking.status}</td>
+          {events.map((event) => (
+            <tr key={event.event_id}>
+              <td>{event.event_name}</td>
+              <td>{formatDate(event.event_date)}</td>
+              <td className={event.status}>{event.status}</td>
               <td>
-                <button className="btn cancel-btn">Cancel</button>
+                <button
+                    className="btn view-btn"
+                    onClick={() => navigate(`/event-details/${event.event_id}`)}
+                >
+                  View
+                </button>
               </td>
             </tr>
           ))}
@@ -58,10 +109,11 @@ const ManageBookings = () => {
         <FullCalendar 
           plugins={[dayGridPlugin]}
           initialView="dayGridMonth"
-          events={confirmedEvents} 
+          events={[...confirmedEvents, ...pendingEvents]} 
           height="500px"
         />
       </div>
+      <ToastContainer />
     </div>
   );
 };
